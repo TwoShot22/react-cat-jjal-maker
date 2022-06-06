@@ -139,6 +139,15 @@
           jsonLocalStorage.getItem("favorites") || []
         );
 
+        async function setInitialCat() {
+          const newCat = await fetchCat('First Cat');
+          setMainCat(newCat);
+        }
+
+        React.useEffect(() => {
+          setInitialCat();
+        }, []); // 두 번째 인자가 변할때마다 useEffect 호출 (없으면 초기에만)
+
         async function updateMainCat(value) {
           const newCat = await fetchCat(value);
 
